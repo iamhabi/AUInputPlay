@@ -28,6 +28,8 @@ class AudioUnitHostModel: ObservableObject {
         self.type = type
         self.subType = subType
         self.manufacturer = manufacturer
+        
+        loadAudioUnit()
     }
 
     public func loadAudioUnit() {

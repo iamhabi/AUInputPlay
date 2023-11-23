@@ -10,7 +10,7 @@
 		077730112B0F78460008E66F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077730102B0F78460008E66F /* ContentView.swift */; };
 		077730152B0F78460008E66F /* ViewControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077730142B0F78460008E66F /* ViewControllerRepresentable.swift */; };
 		077730182B0F78460008E66F /* Synth.aif in Resources */ = {isa = PBXBuildFile; fileRef = 077730172B0F78460008E66F /* Synth.aif */; };
-		0777301A2B0F78460008E66F /* SimplePlayEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077730192B0F78460008E66F /* SimplePlayEngine.swift */; };
+		0777301A2B0F78460008E66F /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077730192B0F78460008E66F /* AudioEngine.swift */; };
 		0777301D2B0F78460008E66F /* MIDIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0777301C2B0F78460008E66F /* MIDIManager.swift */; };
 		0777301F2B0F78460008E66F /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0777301E2B0F78460008E66F /* TypeAliases.swift */; };
 		077730222B0F78460008E66F /* StringHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077730212B0F78460008E66F /* StringHelpers.swift */; };
@@ -87,7 +87,7 @@
 		077730102B0F78460008E66F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		077730142B0F78460008E66F /* ViewControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerRepresentable.swift; sourceTree = "<group>"; };
 		077730172B0F78460008E66F /* Synth.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = Synth.aif; sourceTree = "<group>"; };
-		077730192B0F78460008E66F /* SimplePlayEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePlayEngine.swift; sourceTree = "<group>"; };
+		077730192B0F78460008E66F /* AudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngine.swift; sourceTree = "<group>"; };
 		0777301C2B0F78460008E66F /* MIDIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIManager.swift; sourceTree = "<group>"; };
 		0777301E2B0F78460008E66F /* TypeAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
 		077730212B0F78460008E66F /* StringHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHelpers.swift; sourceTree = "<group>"; };
@@ -221,7 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				077730172B0F78460008E66F /* Synth.aif */,
-				077730192B0F78460008E66F /* SimplePlayEngine.swift */,
+				077730192B0F78460008E66F /* AudioEngine.swift */,
 			);
 			path = Audio;
 			sourceTree = "<group>";
@@ -579,7 +579,7 @@
 				0777308F2B0F78880008E66F /* AudioDeviceFinder.swift in Sources */,
 				0777301F2B0F78460008E66F /* TypeAliases.swift in Sources */,
 				077730942B0F78E30008E66F /* AudioDeviceListView.swift in Sources */,
-				0777301A2B0F78460008E66F /* SimplePlayEngine.swift in Sources */,
+				0777301A2B0F78460008E66F /* AudioEngine.swift in Sources */,
 				077730292B0F78460008E66F /* AUInputPlayApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

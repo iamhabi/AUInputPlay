@@ -11,7 +11,7 @@ import AudioToolbox
 
 class AudioUnitHostModel: ObservableObject {
     /// The playback engine used to play audio.
-    private let playEngine = SimplePlayEngine()
+    private let playEngine = AudioEngine()
 
     /// The model providing information about the current Audio Unit
     @Published private(set) var viewModel = AudioUnitViewModel()

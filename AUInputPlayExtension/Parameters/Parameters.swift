@@ -15,8 +15,8 @@ let AUInputPlayExtensionParameterSpecs = ParameterTreeSpec {
             identifier: "gain",
             name: "Output Gain",
             units: .linearGain,
-            valueRange: 0.0...1.0,
-            defaultValue: 0.25
+            valueRange: 0.0...20.0,
+            defaultValue: 1.0
         )
     }
 }

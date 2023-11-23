@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		077730112B0F78460008E66F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077730102B0F78460008E66F /* ContentView.swift */; };
 		077730152B0F78460008E66F /* ViewControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077730142B0F78460008E66F /* ViewControllerRepresentable.swift */; };
-		077730182B0F78460008E66F /* Synth.aif in Resources */ = {isa = PBXBuildFile; fileRef = 077730172B0F78460008E66F /* Synth.aif */; };
 		0777301A2B0F78460008E66F /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077730192B0F78460008E66F /* AudioEngine.swift */; };
-		0777301D2B0F78460008E66F /* MIDIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0777301C2B0F78460008E66F /* MIDIManager.swift */; };
 		0777301F2B0F78460008E66F /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0777301E2B0F78460008E66F /* TypeAliases.swift */; };
 		077730222B0F78460008E66F /* StringHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077730212B0F78460008E66F /* StringHelpers.swift */; };
 		077730252B0F78460008E66F /* AudioUnitHostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077730242B0F78460008E66F /* AudioUnitHostModel.swift */; };
@@ -86,9 +84,7 @@
 		0777300D2B0F78460008E66F /* AUInputPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AUInputPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		077730102B0F78460008E66F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		077730142B0F78460008E66F /* ViewControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerRepresentable.swift; sourceTree = "<group>"; };
-		077730172B0F78460008E66F /* Synth.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = Synth.aif; sourceTree = "<group>"; };
 		077730192B0F78460008E66F /* AudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngine.swift; sourceTree = "<group>"; };
-		0777301C2B0F78460008E66F /* MIDIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIManager.swift; sourceTree = "<group>"; };
 		0777301E2B0F78460008E66F /* TypeAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
 		077730212B0F78460008E66F /* StringHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHelpers.swift; sourceTree = "<group>"; };
 		077730242B0F78460008E66F /* AudioUnitHostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUnitHostModel.swift; sourceTree = "<group>"; };
@@ -203,7 +199,6 @@
 				0777301E2B0F78460008E66F /* TypeAliases.swift */,
 				077730132B0F78460008E66F /* UI */,
 				077730162B0F78460008E66F /* Audio */,
-				0777301B2B0F78460008E66F /* MIDI */,
 				077730202B0F78460008E66F /* String */,
 			);
 			path = Common;
@@ -220,18 +215,9 @@
 		077730162B0F78460008E66F /* Audio */ = {
 			isa = PBXGroup;
 			children = (
-				077730172B0F78460008E66F /* Synth.aif */,
 				077730192B0F78460008E66F /* AudioEngine.swift */,
 			);
 			path = Audio;
-			sourceTree = "<group>";
-		};
-		0777301B2B0F78460008E66F /* MIDI */ = {
-			isa = PBXGroup;
-			children = (
-				0777301C2B0F78460008E66F /* MIDIManager.swift */,
-			);
-			path = MIDI;
 			sourceTree = "<group>";
 		};
 		077730202B0F78460008E66F /* String */ = {
@@ -530,7 +516,6 @@
 			files = (
 				0777302C2B0F78460008E66F /* Preview Assets.xcassets in Resources */,
 				0777302E2B0F78460008E66F /* Assets.xcassets in Resources */,
-				077730182B0F78460008E66F /* Synth.aif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,7 +560,6 @@
 				077730112B0F78460008E66F /* ContentView.swift in Sources */,
 				077730152B0F78460008E66F /* ViewControllerRepresentable.swift in Sources */,
 				077730222B0F78460008E66F /* StringHelpers.swift in Sources */,
-				0777301D2B0F78460008E66F /* MIDIManager.swift in Sources */,
 				0777308F2B0F78880008E66F /* AudioDeviceFinder.swift in Sources */,
 				0777301F2B0F78460008E66F /* TypeAliases.swift in Sources */,
 				077730942B0F78E30008E66F /* AudioDeviceListView.swift in Sources */,

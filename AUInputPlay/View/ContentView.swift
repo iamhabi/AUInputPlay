@@ -10,45 +10,66 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var hostModel: AudioUnitHostModel
-    var margin = 10.0
-    var doubleMargin: Double {
-        margin * 2.0
-    }
+    
+    @State private var isStarted = false
+    @State private var isPlaying = false
+    
+    @State private var isAUStarted = false
     
     var body: some View {
-        VStack() {
-            Text("\(hostModel.viewModel.title )")
-                .textSelection(.enabled)
-                .padding()
-            VStack(alignment: .center) {
-                if let viewController = hostModel.viewModel.viewController {
-                    AUViewControllerUI(viewController: viewController)
-                        .padding(margin)
-                } else {
-                    VStack() {
-                        Text(hostModel.viewModel.message)
-                            .padding()
-                    }
-                    .frame(minWidth: 400, minHeight: 200)
-                }
-            }
-            .padding(doubleMargin)
+        VStack {
+            AudioDeviceListView(hostModel: hostModel)
             
-            if hostModel.viewModel.showAudioControls {
-                Text("Audio Playback")
+            HStack {
                 Button {
-                    hostModel.isPlaying ? hostModel.stopPlaying() : hostModel.startPlaying()
+                    if !isStarted {
+                        hostModel.startEngine()
+                        hostModel.loadAudioUnit()
+                        
+                        isAUStarted = true
+                        isStarted = true
+                    } else {
+                        hostModel.stop()
+                        
+                        isStarted = false
+                    }
                     
+                    isPlaying = hostModel.isPlaying
                 } label: {
-                    Text(hostModel.isPlaying ? "Stop" : "Play")
+                    Text(isStarted ? "Stop" : "Start")
+                }
+                
+                if isStarted {
+                    Button {
+                        if isPlaying {
+                            hostModel.pause()
+                        } else {
+                            hostModel.start()
+                        }
+                        
+                        isPlaying = hostModel.isPlaying
+                    } label: {
+                        Text(isPlaying ? "pause" : "play")
+                    }
                 }
             }
-            if hostModel.viewModel.showMIDIContols {
-                Text("MIDI Input: Enabled")
+            
+            if isAUStarted {
+                VStack(alignment: .center) {
+                    if let viewController = hostModel.viewModel.viewController {
+                        AUViewControllerUI(viewController: viewController)
+                            .padding()
+                    } else {
+                        VStack() {
+                            Text("Can't get audio unit")
+                                .padding()
+                        }
+                        .frame(minWidth: 400, minHeight: 200)
+                    }
+                }
             }
-            Spacer()
-                .frame(height: margin)
         }
+        .padding()
     }
 }
 

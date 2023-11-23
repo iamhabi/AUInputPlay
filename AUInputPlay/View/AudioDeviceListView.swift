@@ -27,7 +27,7 @@ struct AudioDeviceListView: View {
         
         inputDeviceViewModel.currentIndex = index
         
-//        self.addDevicesChangeListener()
+        self.addDevicesChangeListener()
     }
     
     var body: some View {
@@ -60,15 +60,15 @@ struct AudioDeviceListView: View {
             listener: {
                 print("List change")
                 
-                let inputDevices = AudioDeviceFinder.getInputDevices()
-
-                let inputIndex = inputDeviceViewModel.list.firstIndex(where: {$0.audioDeviceID == audioEngine.inputDevice?.audioDeviceID}) ?? 0
-
-                print("input index \(inputIndex)")
-
-                inputDeviceViewModel.list = inputDevices
-
-                inputDeviceViewModel.currentIndex = inputIndex
+//                let inputDevices = AudioDeviceFinder.getInputDevices()
+//
+//                let inputIndex = inputDeviceViewModel.list.firstIndex(where: {$0.audioDeviceID == audioEngine.inputDevice?.audioDeviceID}) ?? 0
+//
+//                print("input index \(inputIndex)")
+//
+//                inputDeviceViewModel.list = inputDevices
+//
+//                inputDeviceViewModel.currentIndex = inputIndex
             }
         )
     }

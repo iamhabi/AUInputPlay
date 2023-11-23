@@ -10,14 +10,13 @@ import CoreMIDI
 import AudioToolbox
 
 class AudioUnitHostModel: ObservableObject {
-    /// The playback engine used to play audio.
-    private let playEngine = AudioEngine()
+    private let audioEngine = AudioEngine()
 
     /// The model providing information about the current Audio Unit
     @Published private(set) var viewModel = AudioUnitViewModel()
 
     var isPlaying: Bool {
-        playEngine.isPlaying
+        audioEngine.isPlaying
     }
 
     /// Audio Component Description
@@ -25,64 +24,46 @@ class AudioUnitHostModel: ObservableObject {
     let subType: String
     let manufacturer: String
 
-    let wantsAudio: Bool
-    let wantsMIDI: Bool
-    let isFreeRunning: Bool
-
-    let auValString: String
-
     init(type: String = "aufx", subType: String = "auip", manufacturer: String = "AUIP") {
         self.type = type
         self.subType = subType
         self.manufacturer = manufacturer
-        let wantsAudio = type.fourCharCode == kAudioUnitType_MusicEffect || type.fourCharCode == kAudioUnitType_Effect
-        self.wantsAudio = wantsAudio
-
-        let wantsMIDI = type.fourCharCode == kAudioUnitType_MIDIProcessor ||
-        type.fourCharCode == kAudioUnitType_MusicDevice ||
-        type.fourCharCode == kAudioUnitType_MusicEffect
-        self.wantsMIDI = wantsMIDI
-
-        let isFreeRunning = type.fourCharCode == kAudioUnitType_MIDIProcessor ||
-        type.fourCharCode == kAudioUnitType_MusicDevice ||
-        type.fourCharCode == kAudioUnitType_Generator
-        self.isFreeRunning = isFreeRunning
-
-        auValString = "\(type) \(subType) \(manufacturer)"
-
-        loadAudioUnit()
     }
 
-    private func loadAudioUnit() {
-        playEngine.initComponent(type: type,
+    public func loadAudioUnit() {
+        audioEngine.initComponent(type: type,
                                  subType: subType,
                                  manufacturer: manufacturer) { [self] result, viewController in
             switch result {
             case .success(_):
-                self.viewModel = AudioUnitViewModel(showAudioControls: self.wantsAudio,
-                                                    showMIDIContols: self.wantsMIDI,
-                                                    title: self.auValString,
-                                                    message: "Successfully loaded (\(self.auValString))",
-                                                    viewController: viewController)
-
-                if self.isFreeRunning {
-                    self.playEngine.startPlaying()
-                }
-            case .failure(let error):
-                self.viewModel = AudioUnitViewModel(showAudioControls: false,
-                                                    showMIDIContols: false,
-                                                    title: self.auValString,
-                                                    message: "Failed to load Audio Unit with error: \(error.localizedDescription)",
-                                                    viewController: nil)
+                self.viewModel = AudioUnitViewModel(viewController: viewController)
+            case .failure(_):
+                self.viewModel = AudioUnitViewModel(viewController: nil)
             }
         }
     }
-
-    func startPlaying() {
-        playEngine.startPlaying()
+    
+    public func destroyAggregateDevice()  {
+        audioEngine.destroyAggregateDevice()
     }
-
-    func stopPlaying() {
-        playEngine.stopPlaying()
+    
+    public func startEngine() {
+        audioEngine.startEngine()
+    }
+    
+    public func start() {
+        audioEngine.start()
+    }
+    
+    public func pause() {
+        audioEngine.pause()
+    }
+    
+    public func stop() {
+        audioEngine.stop()
+    }
+    
+    public func setInputDevice(AudioDevice audioDevice: AudioDevice) {
+        audioEngine.inputDevice = audioDevice
     }
 }

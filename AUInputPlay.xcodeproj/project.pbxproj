@@ -41,6 +41,7 @@
 		0777308D2B0F78770008E66F /* AudioDeviceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0777308C2B0F78770008E66F /* AudioDeviceUtils.swift */; };
 		0777308F2B0F78880008E66F /* AudioDeviceFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0777308E2B0F78880008E66F /* AudioDeviceFinder.swift */; };
 		077730912B0F789F0008E66F /* AudioDeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077730902B0F789F0008E66F /* AudioDeviceViewModel.swift */; };
+		077730942B0F78E30008E66F /* AudioDeviceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077730932B0F78E30008E66F /* AudioDeviceListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +125,7 @@
 		0777308C2B0F78770008E66F /* AudioDeviceUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDeviceUtils.swift; sourceTree = "<group>"; };
 		0777308E2B0F78880008E66F /* AudioDeviceFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDeviceFinder.swift; sourceTree = "<group>"; };
 		077730902B0F789F0008E66F /* AudioDeviceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDeviceViewModel.swift; sourceTree = "<group>"; };
+		077730932B0F78E30008E66F /* AudioDeviceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDeviceListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,8 +185,8 @@
 		0777300F2B0F78460008E66F /* AUInputPlay */ = {
 			isa = PBXGroup;
 			children = (
+				077730922B0F78D60008E66F /* View */,
 				077730892B0F78590008E66F /* AudioDevice */,
-				077730102B0F78460008E66F /* ContentView.swift */,
 				077730282B0F78460008E66F /* AUInputPlayApp.swift */,
 				0777302D2B0F78460008E66F /* Assets.xcassets */,
 				0777302F2B0F78460008E66F /* AUInputPlay.entitlements */,
@@ -390,6 +392,15 @@
 			path = AudioDevice;
 			sourceTree = "<group>";
 		};
+		077730922B0F78D60008E66F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				077730102B0F78460008E66F /* ContentView.swift */,
+				077730932B0F78E30008E66F /* AudioDeviceListView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -567,6 +578,7 @@
 				0777301D2B0F78460008E66F /* MIDIManager.swift in Sources */,
 				0777308F2B0F78880008E66F /* AudioDeviceFinder.swift in Sources */,
 				0777301F2B0F78460008E66F /* TypeAliases.swift in Sources */,
+				077730942B0F78E30008E66F /* AudioDeviceListView.swift in Sources */,
 				0777301A2B0F78460008E66F /* SimplePlayEngine.swift in Sources */,
 				077730292B0F78460008E66F /* AUInputPlayApp.swift in Sources */,
 			);

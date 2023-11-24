@@ -39,9 +39,27 @@ struct ChangeDefaultOutputDeviceView: View {
             .onChange(of: outputDeviceViewModel.currentIndex) { _, index in
                 let selectedDevice = outputDeviceViewModel.list[index]
                 
-                print(selectedDevice)
+                changeDefaultOutputDevice(AudioDevice: selectedDevice)
             }
         }
+    }
+    
+    private func changeDefaultOutputDevice(AudioDevice audioDevice: AudioDevice) {
+        var address = AudioDeviceUtils.createAudioObjectPropertyAddress(
+            mSelector: kAudioHardwarePropertyDefaultOutputDevice
+        )
+        
+        var audioDeviceID = audioDevice.audioDeviceID
+        let propSize: UInt32 = UInt32(MemoryLayout<AudioDeviceID>.size)
+        
+        AudioObjectSetPropertyData(
+            AudioObjectID(kAudioObjectSystemObject),
+            &address,
+            0,
+            nil,
+            propSize,
+            &audioDeviceID
+        )
     }
     
     private func updateDefaultOutputDevice() {

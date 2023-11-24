@@ -64,16 +64,12 @@ struct AudioDeviceListView: View {
             mSelector: kAudioHardwarePropertyDevices,
             DispatchQueue: DispatchQueue.main,
             listener: {
-                print("List change")
-                
                 guard let inputDevice = hostModel.getInputDevice() else {
                     return
                 }
                 let inputDevices = AudioDeviceFinder.getInputDevices()
 
                 let inputIndex = inputDevices.firstIndex(where: {$0.audioDeviceID == inputDevice.audioDeviceID}) ?? 0
-
-                print("input index \(inputIndex)")
 
                 inputDeviceViewModel.list = inputDevices
                 inputDeviceViewModel.currentIndex = inputIndex

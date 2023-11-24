@@ -16,5 +16,6 @@ struct AUInputPlayApp: App {
         MenuBarExtra("AUIP") {
             ContentView(hostModel: hostModel)
         }
+        .menuBarExtraStyle(.window)
     }
 }

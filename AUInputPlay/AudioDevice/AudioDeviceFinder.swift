@@ -27,7 +27,8 @@ class AudioDeviceFinder {
         let devices = getAllDevices()
         
         for device in devices {
-            if device.hasInput {
+            if device.hasInput
+                && !isAggregateDevice(AudioDeviceID: device.audioDeviceID) {
                 list.append(device)
             }
         }
@@ -138,5 +139,24 @@ class AudioDeviceFinder {
         }
         
         return list
+    }
+    
+    public static func isAggregateDevice(AudioDeviceID audioDeviceID: AudioDeviceID) -> Bool {
+        let address = AudioDeviceUtils.createAudioObjectPropertyAddress(mSelector: kAudioDevicePropertyTransportType)
+        
+        var deviceType: AudioDevicePropertyID = 0
+        
+        let propSize: UInt32 = UInt32(MemoryLayout<AudioDevicePropertyID>.size)
+        
+        if AudioDeviceUtils.getData(
+            AudioDeviceID: audioDeviceID,
+            Address: address,
+            DataSize: propSize,
+            Data: &deviceType
+        ) != 0 {
+            return false
+        }
+        
+        return deviceType == kAudioDeviceTransportTypeAggregate
     }
 }

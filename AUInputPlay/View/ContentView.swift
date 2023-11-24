@@ -16,6 +16,8 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
+            ChangeDefaultOutputDeviceView(hostModel: hostModel)
+            
             AudioDeviceListView(hostModel: hostModel)
             
             HStack {

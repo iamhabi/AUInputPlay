@@ -70,8 +70,8 @@ public class AudioEngine {
     public var inputDevice: AudioDevice?
     
     init() {
-        self.addDevicesChangeListener()
-        self.addDefaultIODeviceChangeListener()
+        addDevicesChangeListener()
+        addDefaultIODeviceChangeListener()
     }
     
     func initComponent(type: String, subType: String, manufacturer: String, completion: @escaping (Result<Bool, Error>, NSViewController?) -> Void) {
@@ -114,11 +114,13 @@ public class AudioEngine {
     }
     
     private func reinitEngine() {
-        self.stop()
+        stop()
         
-        self.initEngine()
+        setAggregateDevice()
         
-        self.start()
+        initEngine()
+        
+        start()
     }
     
     public func startEngine() {
@@ -132,17 +134,17 @@ public class AudioEngine {
     }
     
     private func restartEngine() {
-        self.stop()
+        stop()
         
-        self.destroyAggregateDevice()
+        destroyAggregateDevice()
         
-        self.startEngine()
+        startEngine()
     }
     
     public func setAggregateDevice() {
         do {
-            try self.engine.inputNode.auAudioUnit.setDeviceID(aggregateDeviceId)
-            try self.engine.outputNode.auAudioUnit.setDeviceID(aggregateDeviceId)
+            try engine.inputNode.auAudioUnit.setDeviceID(aggregateDeviceId)
+            try engine.outputNode.auAudioUnit.setDeviceID(aggregateDeviceId)
         } catch {
             print("Fail to set input device")
         }
@@ -211,20 +213,20 @@ public class AudioEngine {
     // MARK: Playback State
     
     public func start() {
-        if !self.isPlaying {
-            self.startPlayingInternal()
+        if !isPlaying {
+            startPlayingInternal()
         }
     }
     
     public func pause() {
-        if self.isPlaying {
+        if isPlaying {
             pausePlayingInternal()
         }
     }
     
     public func stop() {
-        if self.isPlaying {
-            self.stopPlayingInternal()
+        if isPlaying {
+            stopPlayingInternal()
         }
     }
     

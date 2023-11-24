@@ -17,13 +17,7 @@ struct ChangeDefaultOutputDeviceView: View {
         self.hostModel = hostModel
         self.outputDeviceViewModel = AudioDeviceViewModel()
         
-        let defaultOutputDevice = AudioDeviceFinder.getDefaultOutputDevice()
-        let outputDevices = AudioDeviceFinder.getOutputDevices()
-
-        let outputIndex = outputDevices.firstIndex(where: {$0.audioDeviceID == defaultOutputDevice.audioDeviceID}) ?? 0
-
-        outputDeviceViewModel.list = outputDevices
-        outputDeviceViewModel.currentIndex = outputIndex
+        updateDefaultOutputDevice()
         
         addDefaultOutputDeviceChangeListener()
         addDevicesChangeListener()
@@ -50,17 +44,21 @@ struct ChangeDefaultOutputDeviceView: View {
         }
     }
     
+    private func updateDefaultOutputDevice() {
+        let defaultOutputDevice = AudioDeviceFinder.getDefaultOutputDevice()
+        let outputDevices = AudioDeviceFinder.getOutputDevices()
+
+        let outputIndex = outputDevices.firstIndex(where: {$0.audioDeviceID == defaultOutputDevice.audioDeviceID}) ?? 0
+
+        outputDeviceViewModel.list = outputDevices
+        outputDeviceViewModel.currentIndex = outputIndex
+    }
+    
     private func addDefaultOutputDeviceChangeListener() {
         AudioDeviceUtils.setListener(
             mSelector: kAudioHardwarePropertyDefaultOutputDevice,
             listener: {
-                let defaultOutputDevice = AudioDeviceFinder.getDefaultOutputDevice()
-                let outputDevices = AudioDeviceFinder.getOutputDevices()
-
-                let outputIndex = outputDevices.firstIndex(where: {$0.audioDeviceID == defaultOutputDevice.audioDeviceID}) ?? 0
-
-                outputDeviceViewModel.list = outputDevices
-                outputDeviceViewModel.currentIndex = outputIndex
+                updateDefaultOutputDevice()
             }
         )
     }
@@ -70,13 +68,7 @@ struct ChangeDefaultOutputDeviceView: View {
             mSelector: kAudioHardwarePropertyDevices,
             DispatchQueue: DispatchQueue.main,
             listener: {
-                let defaultOutputDevice = AudioDeviceFinder.getDefaultOutputDevice()
-                let outputDevices = AudioDeviceFinder.getOutputDevices()
-
-                let outputIndex = outputDevices.firstIndex(where: {$0.audioDeviceID == defaultOutputDevice.audioDeviceID}) ?? 0
-
-                outputDeviceViewModel.list = outputDevices
-                outputDeviceViewModel.currentIndex = outputIndex
+                updateDefaultOutputDevice()
             }
         )
     }

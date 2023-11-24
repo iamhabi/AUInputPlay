@@ -75,6 +75,7 @@ struct ChangeDefaultOutputDeviceView: View {
     private func addDefaultOutputDeviceChangeListener() {
         AudioDeviceUtils.setListener(
             mSelector: kAudioHardwarePropertyDefaultOutputDevice,
+            DispatchQueue: DispatchQueue.main,
             listener: {
                 updateDefaultOutputDevice()
             }

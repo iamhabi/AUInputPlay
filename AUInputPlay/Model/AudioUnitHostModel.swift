@@ -68,4 +68,8 @@ class AudioUnitHostModel: ObservableObject {
     public func setInputDevice(AudioDevice audioDevice: AudioDevice) {
         audioEngine.inputDevice = audioDevice
     }
+    
+    public func getInputDevice() -> AudioDevice? {
+        return audioEngine.inputDevice
+    }
 }

@@ -40,6 +40,7 @@
 		0777308F2B0F78880008E66F /* AudioDeviceFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0777308E2B0F78880008E66F /* AudioDeviceFinder.swift */; };
 		077730912B0F789F0008E66F /* AudioDeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077730902B0F789F0008E66F /* AudioDeviceViewModel.swift */; };
 		077730942B0F78E30008E66F /* AudioDeviceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077730932B0F78E30008E66F /* AudioDeviceListView.swift */; };
+		07D05B712B10D0F70087711E /* ChangeDefaultOutputDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D05B702B10D0F70087711E /* ChangeDefaultOutputDeviceView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +124,7 @@
 		0777308E2B0F78880008E66F /* AudioDeviceFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDeviceFinder.swift; sourceTree = "<group>"; };
 		077730902B0F789F0008E66F /* AudioDeviceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDeviceViewModel.swift; sourceTree = "<group>"; };
 		077730932B0F78E30008E66F /* AudioDeviceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDeviceListView.swift; sourceTree = "<group>"; };
+		07D05B702B10D0F70087711E /* ChangeDefaultOutputDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeDefaultOutputDeviceView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -385,6 +387,7 @@
 			children = (
 				077730102B0F78460008E66F /* ContentView.swift */,
 				077730932B0F78E30008E66F /* AudioDeviceListView.swift */,
+				07D05B702B10D0F70087711E /* ChangeDefaultOutputDeviceView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -565,6 +568,7 @@
 				0777308F2B0F78880008E66F /* AudioDeviceFinder.swift in Sources */,
 				0777301F2B0F78460008E66F /* TypeAliases.swift in Sources */,
 				077730942B0F78E30008E66F /* AudioDeviceListView.swift in Sources */,
+				07D05B712B10D0F70087711E /* ChangeDefaultOutputDeviceView.swift in Sources */,
 				0777301A2B0F78460008E66F /* AudioEngine.swift in Sources */,
 				077730292B0F78460008E66F /* AUInputPlayApp.swift in Sources */,
 			);

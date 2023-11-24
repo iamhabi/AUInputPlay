@@ -72,6 +72,8 @@ public class AudioEngine {
     init() {
         addDevicesChangeListener()
         addDefaultIODeviceChangeListener()
+        
+        destroyDeviceIfAlreadyExist()
     }
     
     func initComponent(type: String, subType: String, manufacturer: String, completion: @escaping (Result<Bool, Error>, NSViewController?) -> Void) {
@@ -183,6 +185,14 @@ public class AudioEngine {
     
     public func destroyAggregateDevice()  {
         AudioHardwareDestroyAggregateDevice(aggregateDeviceId)
+    }
+    
+    private func destroyDeviceIfAlreadyExist() {
+        let allDevices = AudioDeviceFinder.getAllDevices()
+        
+        if let auipDevice = allDevices.first(where: {$0.name == aggregateDeviceName}) {
+            AudioHardwareDestroyAggregateDevice(auipDevice.audioDeviceID)
+        }
     }
     
     private func addDevicesChangeListener() {

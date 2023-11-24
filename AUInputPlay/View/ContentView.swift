@@ -51,17 +51,12 @@ struct ContentView: View {
                 }
             }
             
-            VStack(alignment: .center) {
-                if let viewController = hostModel.viewModel.viewController {
-                    AUViewControllerUI(viewController: viewController)
-                        .padding()
-                } else {
-                    VStack() {
-                        Text("Can't get audio unit")
-                            .padding()
-                    }
-                    .frame(minWidth: 400, minHeight: 200)
-                }
+            if let viewController = hostModel.viewModel.viewController {
+                AUViewControllerUI(viewController: viewController)
+                    .padding()
+            } else {
+                Text("Can't get audio unit")
+                    .padding()
             }
         }
         .padding()

@@ -70,8 +70,8 @@ public class AudioEngine {
     public var inputDevice: AudioDevice?
     
     init() {
-//        self.addDevicesChangeListener()
-//        self.addDefaultIODeviceChangeListener()
+        self.addDevicesChangeListener()
+        self.addDefaultIODeviceChangeListener()
     }
     
     func initComponent(type: String, subType: String, manufacturer: String, completion: @escaping (Result<Bool, Error>, NSViewController?) -> Void) {
@@ -113,6 +113,14 @@ public class AudioEngine {
         engine.connect(avAudioUnit, to: engine.mainMixerNode, format: inputFormat)
     }
     
+    private func reinitEngine() {
+        self.stop()
+        
+        self.initEngine()
+        
+        self.start()
+    }
+    
     public func startEngine() {
         createAggregateDevice()
         
@@ -126,7 +134,9 @@ public class AudioEngine {
     private func restartEngine() {
         self.stop()
         
-        self.initEngine()
+        self.destroyAggregateDevice()
+        
+        self.startEngine()
     }
     
     public func setAggregateDevice() {
@@ -174,49 +184,25 @@ public class AudioEngine {
     }
     
     private func addDevicesChangeListener() {
-        var address = AudioObjectPropertyAddress(
+        AudioDeviceUtils.setListener(
             mSelector: kAudioHardwarePropertyDevices,
-            mScope: kAudioObjectPropertyScopeGlobal,
-            mElement: kAudioObjectPropertyElementMain
-        )
-        
-        AudioObjectAddPropertyListenerBlock(
-            AudioObjectID(kAudioObjectSystemObject),
-            &address,
-            deviceStateChangeQueue,
-            { (_: UInt32, _: UnsafePointer<AudioObjectPropertyAddress>) in
-                self.restartEngine()
+            listener: {
+                self.reinitEngine()
             }
         )
     }
     
     private func addDefaultIODeviceChangeListener() {
-        var inputDeviceAddress = AudioObjectPropertyAddress(
+        AudioDeviceUtils.setListener(
             mSelector: kAudioHardwarePropertyDefaultInputDevice,
-            mScope: kAudioObjectPropertyScopeGlobal,
-            mElement: kAudioObjectPropertyElementMain
-        )
-        
-        var outputDeviceAddress = AudioObjectPropertyAddress(
-            mSelector: kAudioHardwarePropertyDefaultOutputDevice,
-            mScope: kAudioObjectPropertyScopeGlobal,
-            mElement: kAudioObjectPropertyElementMain
-        )
-        
-        AudioObjectAddPropertyListenerBlock(
-            AudioObjectID(kAudioObjectSystemObject),
-            &inputDeviceAddress,
-            deviceStateChangeQueue,
-            { (_: UInt32, _: UnsafePointer<AudioObjectPropertyAddress>) in
-                self.restartEngine()
+            listener: {
+                self.reinitEngine()
             }
         )
         
-        AudioObjectAddPropertyListenerBlock(
-            AudioObjectID(kAudioObjectSystemObject),
-            &outputDeviceAddress,
-            deviceStateChangeQueue,
-            { (_: UInt32, _: UnsafePointer<AudioObjectPropertyAddress>) in
+        AudioDeviceUtils.setListener(
+            mSelector: kAudioHardwarePropertyDefaultOutputDevice,
+            listener: {
                 self.restartEngine()
             }
         )

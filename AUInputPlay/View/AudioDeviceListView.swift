@@ -19,13 +19,19 @@ struct AudioDeviceListView: View {
         
         inputDeviceViewModel = AudioDeviceViewModel()
         
-        inputDeviceViewModel.list = AudioDeviceFinder.getInputDevices()
+        var inputDevice: AudioDevice
+        if let currenInputDevice = hostModel.getInputDevice() {
+            inputDevice = currenInputDevice
+        } else {
+            inputDevice = AudioDeviceFinder.getDefaultInputDevice()
+        }
         
-        let defaultInputDevice = AudioDeviceFinder.getDefaultInputDevice()
-        
-        let index = inputDeviceViewModel.list.firstIndex(where: {$0.audioDeviceID == defaultInputDevice.audioDeviceID}) ?? 0
-        
-        inputDeviceViewModel.currentIndex = index
+        let inputDevices = AudioDeviceFinder.getInputDevices()
+
+        let inputIndex = inputDevices.firstIndex(where: {$0.audioDeviceID == inputDevice.audioDeviceID}) ?? 0
+
+        inputDeviceViewModel.list = inputDevices
+        inputDeviceViewModel.currentIndex = inputIndex
         
         self.addDevicesChangeListener()
     }
@@ -60,15 +66,17 @@ struct AudioDeviceListView: View {
             listener: {
                 print("List change")
                 
-//                let inputDevices = AudioDeviceFinder.getInputDevices()
-//
-//                let inputIndex = inputDeviceViewModel.list.firstIndex(where: {$0.audioDeviceID == audioEngine.inputDevice?.audioDeviceID}) ?? 0
-//
-//                print("input index \(inputIndex)")
-//
-//                inputDeviceViewModel.list = inputDevices
-//
-//                inputDeviceViewModel.currentIndex = inputIndex
+                guard let inputDevice = hostModel.getInputDevice() else {
+                    return
+                }
+                let inputDevices = AudioDeviceFinder.getInputDevices()
+
+                let inputIndex = inputDevices.firstIndex(where: {$0.audioDeviceID == inputDevice.audioDeviceID}) ?? 0
+
+                print("input index \(inputIndex)")
+
+                inputDeviceViewModel.list = inputDevices
+                inputDeviceViewModel.currentIndex = inputIndex
             }
         )
     }

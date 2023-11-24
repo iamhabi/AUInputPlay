@@ -17,7 +17,7 @@ struct ChangeDefaultOutputDeviceView: View {
         self.hostModel = hostModel
         self.outputDeviceViewModel = AudioDeviceViewModel()
         
-        let defaultOutputDevice = AudioDeviceFinder.getDefaultInputDevice()
+        let defaultOutputDevice = AudioDeviceFinder.getDefaultOutputDevice()
         let outputDevices = AudioDeviceFinder.getOutputDevices()
 
         let outputIndex = outputDevices.firstIndex(where: {$0.audioDeviceID == defaultOutputDevice.audioDeviceID}) ?? 0
@@ -54,7 +54,7 @@ struct ChangeDefaultOutputDeviceView: View {
         AudioDeviceUtils.setListener(
             mSelector: kAudioHardwarePropertyDefaultOutputDevice,
             listener: {
-                let defaultOutputDevice = AudioDeviceFinder.getDefaultInputDevice()
+                let defaultOutputDevice = AudioDeviceFinder.getDefaultOutputDevice()
                 let outputDevices = AudioDeviceFinder.getOutputDevices()
 
                 let outputIndex = outputDevices.firstIndex(where: {$0.audioDeviceID == defaultOutputDevice.audioDeviceID}) ?? 0
@@ -70,7 +70,7 @@ struct ChangeDefaultOutputDeviceView: View {
             mSelector: kAudioHardwarePropertyDevices,
             DispatchQueue: DispatchQueue.main,
             listener: {
-                let defaultOutputDevice = AudioDeviceFinder.getDefaultInputDevice()
+                let defaultOutputDevice = AudioDeviceFinder.getDefaultOutputDevice()
                 let outputDevices = AudioDeviceFinder.getOutputDevices()
 
                 let outputIndex = outputDevices.firstIndex(where: {$0.audioDeviceID == defaultOutputDevice.audioDeviceID}) ?? 0

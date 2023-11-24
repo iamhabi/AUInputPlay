@@ -14,7 +14,8 @@ class AudioDeviceFinder {
         let devices = getAllDevices()
         
         for device in devices {
-            if device.hasOutput {
+            if device.hasOutput
+                && !isAggregateDevice(AudioDeviceID: device.audioDeviceID) {
                 list.append(device)
             }
         }

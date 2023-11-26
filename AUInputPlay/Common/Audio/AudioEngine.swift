@@ -114,6 +114,11 @@ public class AudioEngine {
         
         let inputFormat = engine.inputNode.inputFormat(forBus: 0)
         
+        if inputFormat.sampleRate == 0
+            || inputFormat.channelCount == 0 {
+            return
+        }
+        
         engine.attach(avAudioUnit)
         
         engine.connect(engine.inputNode, to: avAudioUnit, format: inputFormat)

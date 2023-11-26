@@ -18,6 +18,8 @@ struct ContentView: View {
         VStack {
             ChangeDefaultOutputDeviceView(hostModel: hostModel)
             
+            Divider()
+            
             AudioDeviceListView(hostModel: hostModel)
             
             HStack {

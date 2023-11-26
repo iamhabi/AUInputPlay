@@ -39,20 +39,6 @@ struct ContentView: View {
                 } label: {
                     Text(isStarted ? "Stop" : "Start")
                 }
-                
-                if isStarted {
-                    Button {
-                        if isPlaying {
-                            hostModel.pause()
-                        } else {
-                            hostModel.start()
-                        }
-                        
-                        isPlaying = hostModel.isPlaying
-                    } label: {
-                        Text(isPlaying ? "pause" : "play")
-                    }
-                }
             }
             
             if let viewController = hostModel.viewModel.viewController {

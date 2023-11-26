@@ -61,7 +61,11 @@ public class AudioEngine {
     private var avAudioUnit: AVAudioUnit?
     
     // Whether we are playing.
-    public var isPlaying: Bool = false
+    public var isPlaying: Bool {
+        get {
+            engine.isRunning
+        }
+    }
     private var isEngineIntialized: Bool = false
     
     private var aggregateDeviceId: AudioDeviceID = 0
@@ -258,8 +262,6 @@ public class AudioEngine {
                 try engine.start()
             }
             
-            isPlaying = true
-            
             print("engine start")
         } catch {
             print("engine start error:\(error)")
@@ -271,8 +273,6 @@ public class AudioEngine {
             engine.pause()
         }
         
-        isPlaying = false
-        
         print("engine pause")
     }
     
@@ -282,8 +282,6 @@ public class AudioEngine {
             
             engine.stop()
         }
-        
-        isPlaying = false
         
         print("engine stop")
     }

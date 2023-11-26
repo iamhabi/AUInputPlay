@@ -62,6 +62,7 @@ public class AudioEngine {
     
     // Whether we are playing.
     public var isPlaying: Bool = false
+    private var isEngineIntialized: Bool = false
     
     private var aggregateDeviceId: AudioDeviceID = 0
     private let aggregateDeviceName: String = "IOPlayThrough"
@@ -107,20 +108,18 @@ public class AudioEngine {
             return
         }
         
-        if inputDevice == nil {
-            return
-        }
-        
         let inputFormat = engine.inputNode.inputFormat(forBus: 0)
         
         engine.attach(avAudioUnit)
         
         engine.connect(engine.inputNode, to: avAudioUnit, format: inputFormat)
         engine.connect(avAudioUnit, to: engine.mainMixerNode, format: inputFormat)
+        
+        isEngineIntialized = true
     }
     
     private func reinitEngine() {
-        if inputDevice == nil {
+        if !isEngineIntialized {
             return
         }
         
@@ -134,10 +133,6 @@ public class AudioEngine {
     }
     
     public func startEngine() {
-        if inputDevice == nil {
-            return
-        }
-        
         createAggregateDevice()
         
         setAggregateDevice()
@@ -148,7 +143,7 @@ public class AudioEngine {
     }
     
     private func restartEngine() {
-        if inputDevice == nil {
+        if !isEngineIntialized {
             return
         }
         
@@ -283,6 +278,8 @@ public class AudioEngine {
     
     private func stopPlayingInternal() {
         stateChangeQueue.sync {
+            isEngineIntialized = false
+            
             engine.stop()
         }
         

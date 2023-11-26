@@ -107,6 +107,10 @@ public class AudioEngine {
             return
         }
         
+        if inputDevice == nil {
+            return
+        }
+        
         let inputFormat = engine.inputNode.inputFormat(forBus: 0)
         
         engine.attach(avAudioUnit)
@@ -116,6 +120,10 @@ public class AudioEngine {
     }
     
     private func reinitEngine() {
+        if inputDevice == nil {
+            return
+        }
+        
         stop()
         
         setAggregateDevice()
@@ -126,6 +134,10 @@ public class AudioEngine {
     }
     
     public func startEngine() {
+        if inputDevice == nil {
+            return
+        }
+        
         createAggregateDevice()
         
         setAggregateDevice()
@@ -136,6 +148,10 @@ public class AudioEngine {
     }
     
     private func restartEngine() {
+        if inputDevice == nil {
+            return
+        }
+        
         stop()
         
         destroyAggregateDevice()

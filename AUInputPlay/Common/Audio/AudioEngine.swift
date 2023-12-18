@@ -55,7 +55,7 @@ public class AudioEngine {
     private var isEngineIntialized: Bool = false
     
     private var aggregateDeviceId: AudioDeviceID = 0
-    private let aggregateDeviceName: String = "AUInputPlay Aggregate Device"
+    private let aggregateDeviceName: String = "AUIP Aggregate Device"
     private let aggregateDeviceUID: String = "581023647"
     
     public var inputDevice: AudioDevice?

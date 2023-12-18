@@ -171,13 +171,10 @@ public class AudioEngine {
             return
         }
         
-        var subDevices: [[String: Any]] = [
-            [kAudioSubDeviceUIDKey: inputDeviceUID]
+        let subDevices: [[String: Any]] = [
+            [kAudioSubDeviceUIDKey: inputDeviceUID],
+            [kAudioSubDeviceUIDKey: outputDeviceUID]
         ]
-        
-        if inputDeviceUID != outputDeviceUID {
-            subDevices.append([kAudioSubDeviceUIDKey: outputDeviceUID])
-        }
         
         let desc: [String: Any] = [
             kAudioAggregateDeviceNameKey: aggregateDeviceName,

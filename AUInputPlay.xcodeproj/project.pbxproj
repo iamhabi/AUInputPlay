@@ -13,7 +13,6 @@
 		0777301F2B0F78460008E66F /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0777301E2B0F78460008E66F /* TypeAliases.swift */; };
 		077730222B0F78460008E66F /* StringHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077730212B0F78460008E66F /* StringHelpers.swift */; };
 		077730252B0F78460008E66F /* AudioUnitHostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077730242B0F78460008E66F /* AudioUnitHostModel.swift */; };
-		077730272B0F78460008E66F /* AudioUnitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077730262B0F78460008E66F /* AudioUnitViewModel.swift */; };
 		077730292B0F78460008E66F /* AUInputPlayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077730282B0F78460008E66F /* AUInputPlayApp.swift */; };
 		0777302C2B0F78460008E66F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0777302B2B0F78460008E66F /* Preview Assets.xcassets */; };
 		0777302E2B0F78460008E66F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0777302D2B0F78460008E66F /* Assets.xcassets */; };
@@ -71,7 +70,6 @@
 		0777301E2B0F78460008E66F /* TypeAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
 		077730212B0F78460008E66F /* StringHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHelpers.swift; sourceTree = "<group>"; };
 		077730242B0F78460008E66F /* AudioUnitHostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUnitHostModel.swift; sourceTree = "<group>"; };
-		077730262B0F78460008E66F /* AudioUnitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUnitViewModel.swift; sourceTree = "<group>"; };
 		077730282B0F78460008E66F /* AUInputPlayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AUInputPlayApp.swift; sourceTree = "<group>"; };
 		0777302B2B0F78460008E66F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0777302D2B0F78460008E66F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -200,7 +198,6 @@
 			isa = PBXGroup;
 			children = (
 				077730242B0F78460008E66F /* AudioUnitHostModel.swift */,
-				077730262B0F78460008E66F /* AudioUnitViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -469,7 +466,6 @@
 				07A65FED2B30892A00129726 /* ObservableAUParameter.swift in Sources */,
 				077730252B0F78460008E66F /* AudioUnitHostModel.swift in Sources */,
 				077730912B0F789F0008E66F /* AudioDeviceViewModel.swift in Sources */,
-				077730272B0F78460008E66F /* AudioUnitViewModel.swift in Sources */,
 				07A65FF62B308AA300129726 /* ParameterSpecBase.swift in Sources */,
 				07A65FEB2B3088DE00129726 /* Parameters.swift in Sources */,
 				077730112B0F78460008E66F /* ContentView.swift in Sources */,

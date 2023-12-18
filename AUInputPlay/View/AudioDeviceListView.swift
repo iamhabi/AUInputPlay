@@ -33,6 +33,10 @@ struct AudioDeviceListView: View {
         inputDeviceViewModel.list = inputDevices
         inputDeviceViewModel.currentIndex = inputIndex
         
+        if hostModel.getInputDevice() == nil {
+            hostModel.setInputDevice(AudioDevice: inputDevice)
+        }
+        
         self.addDevicesChangeListener()
     }
     

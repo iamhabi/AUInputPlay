@@ -9,10 +9,20 @@ import AudioToolbox
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var hostModel: AudioUnitHostModel
+    @ObservedObject private var hostModel: AudioUnitHostModel
+    
+    @ObservedObject private var gainParam: ObservableAUParameter
     
     @State private var isStarted = false
     @State private var isPlaying = false
+    
+    init(hostModel: AudioUnitHostModel) {
+        self.hostModel = hostModel
+        
+        let globalGroup = hostModel.observableAUParameterGroup!.global
+        
+        gainParam = globalGroup.gain
+    }
     
     var body: some View {
         VStack {
@@ -41,13 +51,7 @@ struct ContentView: View {
                 }
             }
             
-            if let viewController = hostModel.viewModel.viewController {
-                AUViewControllerUI(viewController: viewController)
-                    .padding()
-            } else {
-                Text("Can't get audio unit")
-                    .padding()
-            }
+            ParameterSlider(param: gainParam)
         }
         .padding()
     }

@@ -1,14 +1,14 @@
 //
-//  Parameters.swift
-//  AUInputPlayExtension
+//  ParameterSpecBase.swift
+//  AUInputPlay
 //
-//  Created by habi on 11/23/23.
+//  Created by habi on 12/18/23.
 //
 
 import Foundation
 import AudioToolbox
 
-let AUInputPlayExtensionParameterSpecs = ParameterTreeSpec {
+let AUIPParameterSpecs = ParameterTreeSpec {
     ParameterGroupSpec(identifier: "global", name: "Global") {
         ParameterSpec(
             address: .gain,
@@ -23,7 +23,7 @@ let AUInputPlayExtensionParameterSpecs = ParameterTreeSpec {
 
 extension ParameterSpec {
     init(
-        address: AUInputPlayExtensionParameterAddress,
+        address: AUIPParameterAddress,
         identifier: String,
         name: String,
         units: AudioUnitParameterUnit,

@@ -25,6 +25,11 @@
 		0777308F2B0F78880008E66F /* AudioDeviceFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0777308E2B0F78880008E66F /* AudioDeviceFinder.swift */; };
 		077730912B0F789F0008E66F /* AudioDeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077730902B0F789F0008E66F /* AudioDeviceViewModel.swift */; };
 		077730942B0F78E30008E66F /* AudioDeviceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077730932B0F78E30008E66F /* AudioDeviceListView.swift */; };
+		07A65FEB2B3088DE00129726 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A65FEA2B3088DE00129726 /* Parameters.swift */; };
+		07A65FED2B30892A00129726 /* ObservableAUParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A65FEC2B30892A00129726 /* ObservableAUParameter.swift */; };
+		07A65FF22B308A0300129726 /* AUIPAudioUnit.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07A65FF12B308A0300129726 /* AUIPAudioUnit.mm */; };
+		07A65FF42B308A8200129726 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A65FF32B308A8200129726 /* String+Utils.swift */; };
+		07A65FF62B308AA300129726 /* ParameterSpecBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A65FF52B308AA300129726 /* ParameterSpecBase.swift */; };
 		07D05B712B10D0F70087711E /* ChangeDefaultOutputDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D05B702B10D0F70087711E /* ChangeDefaultOutputDeviceView.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,7 +64,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		07072F2C2B0F7C8E00FA9405 /* AUInputPlayExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AUInputPlayExtension.entitlements; sourceTree = "<group>"; };
 		0777300D2B0F78460008E66F /* AUInputPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AUInputPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		077730102B0F78460008E66F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		077730142B0F78460008E66F /* ViewControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerRepresentable.swift; sourceTree = "<group>"; };
@@ -77,29 +81,22 @@
 		0777303E2B0F78470008E66F /* AUInputPlayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AUInputPlayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		077730422B0F78470008E66F /* AUInputPlayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AUInputPlayUITests.swift; sourceTree = "<group>"; };
 		077730442B0F78470008E66F /* AUInputPlayUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AUInputPlayUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		0777304F2B0F78470008E66F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		077730522B0F78470008E66F /* AUInputPlayExtension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AUInputPlayExtension-Bridging-Header.h"; sourceTree = "<group>"; };
-		077730542B0F78470008E66F /* ParameterSpecBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterSpecBase.swift; sourceTree = "<group>"; };
-		077730572B0F78470008E66F /* CrossPlatform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossPlatform.swift; sourceTree = "<group>"; };
-		077730592B0F78470008E66F /* String+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
-		0777305C2B0F78470008E66F /* AUInputPlayExtensionAudioUnit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AUInputPlayExtensionAudioUnit.h; sourceTree = "<group>"; };
-		0777305D2B0F78470008E66F /* AUInputPlayExtensionAudioUnit.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AUInputPlayExtensionAudioUnit.mm; sourceTree = "<group>"; };
-		077730602B0F78470008E66F /* AUInputPlayExtensionAUProcessHelper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AUInputPlayExtensionAUProcessHelper.hpp; sourceTree = "<group>"; };
-		077730622B0F78470008E66F /* AUInputPlayExtensionBufferedAudioBus.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AUInputPlayExtensionBufferedAudioBus.hpp; sourceTree = "<group>"; };
-		077730652B0F78470008E66F /* AUInputPlayExtensionParameterAddresses.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AUInputPlayExtensionParameterAddresses.h; sourceTree = "<group>"; };
-		077730662B0F78470008E66F /* Parameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
-		077730692B0F78470008E66F /* AUInputPlayExtensionDSPKernel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AUInputPlayExtensionDSPKernel.hpp; sourceTree = "<group>"; };
-		0777306C2B0F78470008E66F /* AUInputPlayExtensionMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AUInputPlayExtensionMainView.swift; sourceTree = "<group>"; };
-		0777306E2B0F78470008E66F /* ParameterSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterSlider.swift; sourceTree = "<group>"; };
-		077730732B0F78470008E66F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = AudioUnitViewController.xib; sourceTree = "<group>"; };
-		077730752B0F78470008E66F /* ObservableAUParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableAUParameter.swift; sourceTree = "<group>"; };
-		077730772B0F78470008E66F /* AudioUnitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUnitViewController.swift; sourceTree = "<group>"; };
-		077730792B0F78470008E66F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0777308A2B0F78630008E66F /* AudioDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDevice.swift; sourceTree = "<group>"; };
 		0777308C2B0F78770008E66F /* AudioDeviceUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDeviceUtils.swift; sourceTree = "<group>"; };
 		0777308E2B0F78880008E66F /* AudioDeviceFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDeviceFinder.swift; sourceTree = "<group>"; };
 		077730902B0F789F0008E66F /* AudioDeviceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDeviceViewModel.swift; sourceTree = "<group>"; };
 		077730932B0F78E30008E66F /* AudioDeviceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDeviceListView.swift; sourceTree = "<group>"; };
+		07A65FE82B30887B00129726 /* AUIPDSPKernel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AUIPDSPKernel.hpp; sourceTree = "<group>"; };
+		07A65FE92B3088AE00129726 /* AUIPParameterAddresses.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AUIPParameterAddresses.h; sourceTree = "<group>"; };
+		07A65FEA2B3088DE00129726 /* Parameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
+		07A65FEC2B30892A00129726 /* ObservableAUParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableAUParameter.swift; sourceTree = "<group>"; };
+		07A65FEE2B30895A00129726 /* AUIPAUProcessHelper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AUIPAUProcessHelper.hpp; sourceTree = "<group>"; };
+		07A65FEF2B3089B500129726 /* AUIPBufferedAudioBus.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AUIPBufferedAudioBus.hpp; sourceTree = "<group>"; };
+		07A65FF02B3089DA00129726 /* AUIPAudioUnit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AUIPAudioUnit.h; sourceTree = "<group>"; };
+		07A65FF12B308A0300129726 /* AUIPAudioUnit.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AUIPAudioUnit.mm; sourceTree = "<group>"; };
+		07A65FF32B308A8200129726 /* String+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
+		07A65FF52B308AA300129726 /* ParameterSpecBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterSpecBase.swift; sourceTree = "<group>"; };
+		07A65FF72B308AB500129726 /* AUIP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AUIP-Bridging-Header.h"; sourceTree = "<group>"; };
 		07D05B702B10D0F70087711E /* ChangeDefaultOutputDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeDefaultOutputDeviceView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -151,7 +148,7 @@
 		0777300F2B0F78460008E66F /* AUInputPlay */ = {
 			isa = PBXGroup;
 			children = (
-				0777304E2B0F78470008E66F /* AUInputPlayExtension */,
+				07A65F5A2B3087AE00129726 /* AudioUnit */,
 				077730922B0F78D60008E66F /* View */,
 				077730892B0F78590008E66F /* AudioDevice */,
 				077730282B0F78460008E66F /* AUInputPlayApp.swift */,
@@ -233,112 +230,6 @@
 			path = AUInputPlayUITests;
 			sourceTree = "<group>";
 		};
-		0777304E2B0F78470008E66F /* AUInputPlayExtension */ = {
-			isa = PBXGroup;
-			children = (
-				07072F2C2B0F7C8E00FA9405 /* AUInputPlayExtension.entitlements */,
-				0777304F2B0F78470008E66F /* README.md */,
-				077730792B0F78470008E66F /* Info.plist */,
-				077730512B0F78470008E66F /* Common */,
-				077730642B0F78470008E66F /* Parameters */,
-				077730682B0F78470008E66F /* DSP */,
-				0777306B2B0F78470008E66F /* UI */,
-			);
-			path = AUInputPlayExtension;
-			sourceTree = "<group>";
-		};
-		077730512B0F78470008E66F /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				077730522B0F78470008E66F /* AUInputPlayExtension-Bridging-Header.h */,
-				077730532B0F78470008E66F /* Parameters */,
-				077730562B0F78470008E66F /* Utility */,
-				0777305B2B0F78470008E66F /* Audio Unit */,
-				0777305F2B0F78470008E66F /* DSP */,
-				077730702B0F78470008E66F /* UI */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		077730532B0F78470008E66F /* Parameters */ = {
-			isa = PBXGroup;
-			children = (
-				077730542B0F78470008E66F /* ParameterSpecBase.swift */,
-			);
-			path = Parameters;
-			sourceTree = "<group>";
-		};
-		077730562B0F78470008E66F /* Utility */ = {
-			isa = PBXGroup;
-			children = (
-				077730572B0F78470008E66F /* CrossPlatform.swift */,
-				077730592B0F78470008E66F /* String+Utils.swift */,
-			);
-			path = Utility;
-			sourceTree = "<group>";
-		};
-		0777305B2B0F78470008E66F /* Audio Unit */ = {
-			isa = PBXGroup;
-			children = (
-				0777305C2B0F78470008E66F /* AUInputPlayExtensionAudioUnit.h */,
-				0777305D2B0F78470008E66F /* AUInputPlayExtensionAudioUnit.mm */,
-			);
-			path = "Audio Unit";
-			sourceTree = "<group>";
-		};
-		0777305F2B0F78470008E66F /* DSP */ = {
-			isa = PBXGroup;
-			children = (
-				077730602B0F78470008E66F /* AUInputPlayExtensionAUProcessHelper.hpp */,
-				077730622B0F78470008E66F /* AUInputPlayExtensionBufferedAudioBus.hpp */,
-			);
-			path = DSP;
-			sourceTree = "<group>";
-		};
-		077730642B0F78470008E66F /* Parameters */ = {
-			isa = PBXGroup;
-			children = (
-				077730652B0F78470008E66F /* AUInputPlayExtensionParameterAddresses.h */,
-				077730662B0F78470008E66F /* Parameters.swift */,
-			);
-			path = Parameters;
-			sourceTree = "<group>";
-		};
-		077730682B0F78470008E66F /* DSP */ = {
-			isa = PBXGroup;
-			children = (
-				077730692B0F78470008E66F /* AUInputPlayExtensionDSPKernel.hpp */,
-			);
-			path = DSP;
-			sourceTree = "<group>";
-		};
-		0777306B2B0F78470008E66F /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				0777306C2B0F78470008E66F /* AUInputPlayExtensionMainView.swift */,
-				0777306E2B0F78470008E66F /* ParameterSlider.swift */,
-			);
-			path = UI;
-			sourceTree = "<group>";
-		};
-		077730702B0F78470008E66F /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				077730752B0F78470008E66F /* ObservableAUParameter.swift */,
-				077730772B0F78470008E66F /* AudioUnitViewController.swift */,
-				077730712B0F78470008E66F /* Base.lproj */,
-			);
-			path = UI;
-			sourceTree = "<group>";
-		};
-		077730712B0F78470008E66F /* Base.lproj */ = {
-			isa = PBXGroup;
-			children = (
-				077730722B0F78470008E66F /* AudioUnitViewController.xib */,
-			);
-			path = Base.lproj;
-			sourceTree = "<group>";
-		};
 		077730892B0F78590008E66F /* AudioDevice */ = {
 			isa = PBXGroup;
 			children = (
@@ -358,6 +249,88 @@
 				07D05B702B10D0F70087711E /* ChangeDefaultOutputDeviceView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		07A65F5A2B3087AE00129726 /* AudioUnit */ = {
+			isa = PBXGroup;
+			children = (
+				07A65FE22B30880700129726 /* Common */,
+				07A65FE12B3087F700129726 /* Parameters */,
+				07A65FE02B3087EA00129726 /* DSP */,
+			);
+			path = AudioUnit;
+			sourceTree = "<group>";
+		};
+		07A65FE02B3087EA00129726 /* DSP */ = {
+			isa = PBXGroup;
+			children = (
+				07A65FE82B30887B00129726 /* AUIPDSPKernel.hpp */,
+			);
+			path = DSP;
+			sourceTree = "<group>";
+		};
+		07A65FE12B3087F700129726 /* Parameters */ = {
+			isa = PBXGroup;
+			children = (
+				07A65FE92B3088AE00129726 /* AUIPParameterAddresses.h */,
+				07A65FEA2B3088DE00129726 /* Parameters.swift */,
+			);
+			path = Parameters;
+			sourceTree = "<group>";
+		};
+		07A65FE22B30880700129726 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				07A65FF72B308AB500129726 /* AUIP-Bridging-Header.h */,
+				07A65FE72B30883900129726 /* Parameters */,
+				07A65FE62B30883000129726 /* Utility */,
+				07A65FE52B30882700129726 /* Audio Unit */,
+				07A65FE42B30882000129726 /* DSP */,
+				07A65FE32B30881800129726 /* UI */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		07A65FE32B30881800129726 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				07A65FEC2B30892A00129726 /* ObservableAUParameter.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		07A65FE42B30882000129726 /* DSP */ = {
+			isa = PBXGroup;
+			children = (
+				07A65FEE2B30895A00129726 /* AUIPAUProcessHelper.hpp */,
+				07A65FEF2B3089B500129726 /* AUIPBufferedAudioBus.hpp */,
+			);
+			path = DSP;
+			sourceTree = "<group>";
+		};
+		07A65FE52B30882700129726 /* Audio Unit */ = {
+			isa = PBXGroup;
+			children = (
+				07A65FF02B3089DA00129726 /* AUIPAudioUnit.h */,
+				07A65FF12B308A0300129726 /* AUIPAudioUnit.mm */,
+			);
+			path = "Audio Unit";
+			sourceTree = "<group>";
+		};
+		07A65FE62B30883000129726 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				07A65FF32B308A8200129726 /* String+Utils.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		07A65FE72B30883900129726 /* Parameters */ = {
+			isa = PBXGroup;
+			children = (
+				07A65FF52B308AA300129726 /* ParameterSpecBase.swift */,
+			);
+			path = Parameters;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -493,9 +466,12 @@
 			files = (
 				0777308D2B0F78770008E66F /* AudioDeviceUtils.swift in Sources */,
 				0777308B2B0F78630008E66F /* AudioDevice.swift in Sources */,
+				07A65FED2B30892A00129726 /* ObservableAUParameter.swift in Sources */,
 				077730252B0F78460008E66F /* AudioUnitHostModel.swift in Sources */,
 				077730912B0F789F0008E66F /* AudioDeviceViewModel.swift in Sources */,
 				077730272B0F78460008E66F /* AudioUnitViewModel.swift in Sources */,
+				07A65FF62B308AA300129726 /* ParameterSpecBase.swift in Sources */,
+				07A65FEB2B3088DE00129726 /* Parameters.swift in Sources */,
 				077730112B0F78460008E66F /* ContentView.swift in Sources */,
 				077730152B0F78460008E66F /* ViewControllerRepresentable.swift in Sources */,
 				077730222B0F78460008E66F /* StringHelpers.swift in Sources */,
@@ -503,8 +479,10 @@
 				0777301F2B0F78460008E66F /* TypeAliases.swift in Sources */,
 				077730942B0F78E30008E66F /* AudioDeviceListView.swift in Sources */,
 				07D05B712B10D0F70087711E /* ChangeDefaultOutputDeviceView.swift in Sources */,
+				07A65FF42B308A8200129726 /* String+Utils.swift in Sources */,
 				0777301A2B0F78460008E66F /* AudioEngine.swift in Sources */,
 				077730292B0F78460008E66F /* AUInputPlayApp.swift in Sources */,
+				07A65FF22B308A0300129726 /* AUIPAudioUnit.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,17 +517,6 @@
 			targetProxy = 0777303F2B0F78470008E66F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		077730722B0F78470008E66F /* AudioUnitViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				077730732B0F78470008E66F /* Base */,
-			);
-			name = AudioUnitViewController.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		0777307A2B0F78470008E66F /* Debug */ = {
@@ -706,6 +673,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.iamhabi.AUInputPlay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "AUInputPlay/AudioUnit/Common/AUIP-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -746,6 +714,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.iamhabi.AUInputPlay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "AUInputPlay/AudioUnit/Common/AUIP-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

@@ -1,8 +1,8 @@
 //
-//  AUInputPlayExtensionDSPKernel.hpp
-//  AUInputPlayExtension
+//  AUIPAudioUnit.hpp
+//  AUInputPlay
 //
-//  Created by habi on 11/23/23.
+//  Created by habi on 12/18/23.
 //
 
 #pragma once
@@ -12,14 +12,14 @@
 #import <vector>
 #import <span>
 
-#import "AUInputPlayExtension-Swift.h"
-#import "AUInputPlayExtensionParameterAddresses.h"
+#import "AUInputPlay-Swift.h"
+#import "AUIPParameterAddresses.h"
 
 /*
- AUInputPlayExtensionDSPKernel
+ temp111ExtensionDSPKernel
  As a non-ObjC class, this is safe to use from render thread.
  */
-class AUInputPlayExtensionDSPKernel {
+class AUIPDSPKernel {
 public:
     void initialize(int inputChannelCount, int outputChannelCount, double inSampleRate) {
         mSampleRate = inSampleRate;
@@ -40,10 +40,10 @@ public:
     // MARK: - Parameter Getter / Setter
     void setParameter(AUParameterAddress address, AUValue value) {
         switch (address) {
-            case AUInputPlayExtensionParameterAddress::gain:
+            case AUIPParameterAddress::gain:
                 mGain = value;
                 break;
-                // Add a case for each parameter in AUInputPlayExtensionParameterAddresses.h
+                // Add a case for each parameter in temp111ExtensionParameterAddresses.h
         }
     }
     
@@ -51,7 +51,7 @@ public:
         // Return the goal. It is not thread safe to return the ramping value.
         
         switch (address) {
-            case AUInputPlayExtensionParameterAddress::gain:
+            case AUIPParameterAddress::gain:
                 return (AUValue)mGain;
                 
             default: return 0.f;
@@ -81,7 +81,7 @@ public:
     void process(std::span<float const*> inputBuffers, std::span<float *> outputBuffers, AUEventSampleTime bufferStartTime, AUAudioFrameCount frameCount) {
         /*
          Note: For an Audio Unit with 'n' input channels to 'n' output channels, remove the assert below and
-         modify the check in [AUInputPlayExtensionAudioUnit allocateRenderResourcesAndReturnError]
+         modify the check in [temp111ExtensionAudioUnit allocateRenderResourcesAndReturnError]
          */
         assert(inputBuffers.size() == outputBuffers.size());
         
@@ -97,12 +97,12 @@ public:
         // Replace nullptr with &memberVariable according to the AUHostMusicalContextBlock function signature
         /*
          if (mMusicalContextBlock) {
-         mMusicalContextBlock(nullptr, 	// currentTempo
-         nullptr, 	// timeSignatureNumerator
-         nullptr, 	// timeSignatureDenominator
-         nullptr, 	// currentBeatPosition
-         nullptr, 	// sampleOffsetToNextBeat
-         nullptr);	// currentMeasureDownbeatPosition
+         mMusicalContextBlock(nullptr,     // currentTempo
+         nullptr,     // timeSignatureNumerator
+         nullptr,     // timeSignatureDenominator
+         nullptr,     // currentBeatPosition
+         nullptr,     // sampleOffsetToNextBeat
+         nullptr);    // currentMeasureDownbeatPosition
          }
          */
         

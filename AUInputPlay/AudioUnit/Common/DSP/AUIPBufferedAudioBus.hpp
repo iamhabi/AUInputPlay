@@ -1,8 +1,8 @@
 //
-//  AUInputPlayExtensionBufferedAudioBus.hpp
-//  AUInputPlayExtension
+//  AUIPBufferedAudioBus.hpp
+//  AUInputPlay
 //
-//  Created by habi on 11/23/23.
+//  Created by habi on 12/18/23.
 //
 
 #import <AudioToolbox/AudioToolbox.h>

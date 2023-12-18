@@ -1,20 +1,20 @@
 //
-//  AUInputPlayExtensionAudioUnit.mm
-//  AUInputPlayExtension
+//  AUIPAudioUnit.mm
+//  AUInputPlay
 //
-//  Created by habi on 11/23/23.
+//  Created by habi on 12/18/23.
 //
 
-#import "AUInputPlayExtensionAudioUnit.h"
+#import "AUIPAudioUnit.h"
 
 #import <AVFoundation/AVFoundation.h>
 #import <CoreAudioKit/AUViewController.h>
 
-#import "AUInputPlayExtensionBufferedAudioBus.hpp"
-#import "AUInputPlayExtensionAUProcessHelper.hpp"
-#import "AUInputPlayExtensionDSPKernel.hpp"
+#import "AUIPBufferedAudioBus.hpp"
+#import "AUIPAUProcessHelper.hpp"
+#import "AUIPDSPKernel.hpp"
 
-@interface AUInputPlayExtensionAudioUnit ()
+@interface AUIPAudioUnit ()
 
 @property (nonatomic, readwrite) AUParameterTree *parameterTree;
 @property AUAudioUnitBusArray *inputBusArray;
@@ -23,9 +23,9 @@
 @end
 
 
-@implementation AUInputPlayExtensionAudioUnit {
+@implementation AUIPAudioUnit {
     // C++ members need to be ivars; they would be copied on access if they were properties.
-    AUInputPlayExtensionDSPKernel _kernel;
+    AUIPDSPKernel _kernel;
     BufferedInputBus _inputBus;
     std::unique_ptr<AUProcessHelper> _processHelper;
 }
@@ -77,7 +77,7 @@
 - (void)setupParameterCallbacks {
     // Make a local pointer to the kernel to avoid capturing self.
     
-    __block AUInputPlayExtensionDSPKernel *kernel = &_kernel;
+    __block AUIPDSPKernel *kernel = &_kernel;
     
     // implementorValueObserver is called when a parameter changes value.
     _parameterTree.implementorValueObserver = ^(AUParameter *param, AUValue value) {
@@ -170,16 +170,16 @@
      render, we're doing it wrong.
      */
     // Specify captured objects are mutable.
-    __block AUInputPlayExtensionDSPKernel *kernel = &_kernel;
+    __block AUIPDSPKernel *kernel = &_kernel;
     __block std::unique_ptr<AUProcessHelper> &processHelper = _processHelper;
     __block BufferedInputBus *input = &_inputBus;
     
-    return ^AUAudioUnitStatus(AudioUnitRenderActionFlags 				*actionFlags,
-                              const AudioTimeStamp       				*timestamp,
-                              AVAudioFrameCount           				frameCount,
-                              NSInteger                   				outputBusNumber,
-                              AudioBufferList            				*outputData,
-                              const AURenderEvent        				*realtimeEventListHead,
+    return ^AUAudioUnitStatus(AudioUnitRenderActionFlags                 *actionFlags,
+                              const AudioTimeStamp                       *timestamp,
+                              AVAudioFrameCount                           frameCount,
+                              NSInteger                                   outputBusNumber,
+                              AudioBufferList                            *outputData,
+                              const AURenderEvent                        *realtimeEventListHead,
                               AURenderPullInputBlock __unsafe_unretained pullInputBlock) {
         
         AudioUnitRenderActionFlags pullFlags = 0;

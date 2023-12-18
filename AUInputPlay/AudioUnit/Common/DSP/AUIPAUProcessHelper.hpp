@@ -1,8 +1,8 @@
 //
-//  AUInputPlayExtensionAUProcessHelper.hpp
-//  AUInputPlayExtension
+//  AUIPAUProcessHelper.hpp
+//  AUInputPlay
 //
-//  Created by habi on 11/23/23.
+//  Created by habi on 12/18/23.
 //
 
 #pragma once
@@ -11,13 +11,13 @@
 #import <AVFoundation/AVFoundation.h>
 
 #include <vector>
-#include "AUInputPlayExtensionDSPKernel.hpp"
+#include "AUIPDSPKernel.hpp"
 
 //MARK:- AUProcessHelper Utility Class
 class AUProcessHelper
 {
 public:
-    AUProcessHelper(AUInputPlayExtensionDSPKernel& kernel, UInt32 inputChannelCount, UInt32 outputChannelCount)
+    AUProcessHelper(AUIPDSPKernel& kernel, UInt32 inputChannelCount, UInt32 outputChannelCount)
     : mKernel{kernel},
     mInputBuffers(inputChannelCount),
     mOutputBuffers(outputChannelCount) {
@@ -87,7 +87,7 @@ public:
         return event;
     }
 private:
-    AUInputPlayExtensionDSPKernel& mKernel;
+    AUIPDSPKernel& mKernel;
     std::vector<const float*> mInputBuffers;
     std::vector<float*> mOutputBuffers;
 };

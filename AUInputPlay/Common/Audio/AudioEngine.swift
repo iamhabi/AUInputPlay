@@ -17,23 +17,7 @@ import AppKit
 
 /// Wraps and Audio Unit extension and provides helper functions.
 extension AVAudioUnit {
-
-    var wantsAudioInput: Bool {
-        let componentType = self.auAudioUnit.componentDescription.componentType
-        return componentType == kAudioUnitType_MusicEffect || componentType == kAudioUnitType_Effect
-    }
-    
-    static fileprivate func findComponent(type: String, subType: String, manufacturer: String) -> AVAudioUnitComponent? {
-        // Make a component description matching any Audio Unit of the selected component type.
-        let description = AudioComponentDescription(componentType: type.fourCharCode!,
-                                                    componentSubType: subType.fourCharCode!,
-                                                    componentManufacturer: manufacturer.fourCharCode!,
-                                                    componentFlags: 0,
-                                                    componentFlagsMask: 0)
-        return AVAudioUnitComponentManager.shared().components(matching: description).first
-    }
-    
-    fileprivate func loadAudioUnitViewController(completion: @escaping (ViewController?) -> Void) {
+    func loadAudioUnitViewController(completion: @escaping (ViewController?) -> Void) {
         auAudioUnit.requestViewController { [weak self] viewController in
             DispatchQueue.main.async {
                 if #available(macOS 13.0, iOS 16.0, *) {
@@ -44,6 +28,7 @@ extension AVAudioUnit {
                             return
                     }
                 }
+                
                 completion(viewController)
             }
         }
@@ -66,10 +51,11 @@ public class AudioEngine {
             engine.isRunning
         }
     }
+    
     private var isEngineIntialized: Bool = false
     
     private var aggregateDeviceId: AudioDeviceID = 0
-    private let aggregateDeviceName: String = "IOPlayThrough"
+    private let aggregateDeviceName: String = "AUInputPlay Aggregate Device"
     private let aggregateDeviceUID: String = "581023647"
     
     public var inputDevice: AudioDevice?
@@ -81,28 +67,33 @@ public class AudioEngine {
         destroyDeviceIfAlreadyExist()
     }
     
-    func initComponent(type: String, subType: String, manufacturer: String, completion: @escaping (Result<Bool, Error>, NSViewController?) -> Void) {
-        guard let component = AVAudioUnit.findComponent(type: type, subType: subType, manufacturer: manufacturer) else {
-            print("Failed to find component with type: \(type), subtype: \(subType), manufacturer: \(manufacturer))" )
-            
-            return
+    func initComponent(description: AudioComponentDescription) -> ObservableAUParameterGroup? {
+        guard let component = AVAudioUnitComponentManager.shared().components(matching: description).first else {
+            return nil
         }
         
-        AVAudioUnit.instantiate(with: component.audioComponentDescription,
-                                options: AudioComponentInstantiationOptions.loadOutOfProcess) { avAudioUnit, error in
-            
+        var observableAUParemterGroup: ObservableAUParameterGroup? = nil
+        
+        AVAudioUnit.instantiate(
+            with: component.audioComponentDescription,
+            options: AudioComponentInstantiationOptions.loadOutOfProcess
+        ) { avAudioUnit, error in
             guard let audioUnit = avAudioUnit, error == nil else {
-                completion(.failure(error!), nil)
                 return
             }
             
             self.avAudioUnit = audioUnit
             
-            // Load view controller and call completion handler
-            audioUnit.loadAudioUnitViewController { viewController in
-                completion(.success(true), viewController)
+            guard let auInputPlayAudioUnit = audioUnit.auAudioUnit as? AUIPAudioUnit else {
+                return
             }
+            
+            auInputPlayAudioUnit.setupParameterTree(AUIPParameterSpecs.createAUParameterTree())
+            
+            observableAUParemterGroup = auInputPlayAudioUnit.observableParameterTree
         }
+        
+        return observableAUParemterGroup
     }
     
     // MARK: Initialize audio engine

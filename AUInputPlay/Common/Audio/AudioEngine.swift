@@ -15,26 +15,6 @@ import UIKit
 import AppKit
 #endif
 
-/// Wraps and Audio Unit extension and provides helper functions.
-extension AVAudioUnit {
-    func loadAudioUnitViewController(completion: @escaping (ViewController?) -> Void) {
-        auAudioUnit.requestViewController { [weak self] viewController in
-            DispatchQueue.main.async {
-                if #available(macOS 13.0, iOS 16.0, *) {
-                    if let self = self, viewController == nil {
-                            let genericViewController = AUGenericViewController()
-                            genericViewController.auAudioUnit = self.auAudioUnit
-                            completion(genericViewController)
-                            return
-                    }
-                }
-                
-                completion(viewController)
-            }
-        }
-    }
-}
-
 /// Manages the interaction with the AudioToolbox and AVFoundation frameworks.
 public class AudioEngine {
     private let stateChangeQueue = DispatchQueue(label: "com.example.apple-samplecode.StateChangeQueue")
@@ -191,7 +171,7 @@ public class AudioEngine {
         }
     }
     
-    public func destroyAggregateDevice()  {
+    public func destroyAggregateDevice() {
         AudioHardwareDestroyAggregateDevice(aggregateDeviceId)
     }
     

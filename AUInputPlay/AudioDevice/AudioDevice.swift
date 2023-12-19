@@ -35,12 +35,18 @@ public class AudioDevice: Identifiable {
         }
     }
     
-    public var icon: CFURL? {
+    public var sampleRate: Double? {
         get {
-            getIcon()
+            getSampleRate()
         }
     }
-
+    
+    public var inputChannelCount: AVAudioChannelCount? {
+        get {
+            getInputChannelCount()
+        }
+    }
+    
     init(deviceID: AudioDeviceID) {
         self.audioDeviceID = deviceID
     }
@@ -51,7 +57,7 @@ public class AudioDevice: Identifiable {
             mScope: kAudioDevicePropertyScopeInput
         )
 
-        var propSize: UInt32 = UInt32(MemoryLayout<CFString?>.size)
+        var propSize: UInt32 = MemoryLayout<CFString?>.u_size
         
         if AudioObjectGetPropertyDataSize(
             self.audioDeviceID,
@@ -91,7 +97,7 @@ public class AudioDevice: Identifiable {
             mScope: kAudioDevicePropertyScopeOutput
         )
 
-        var propSize: UInt32 = UInt32(MemoryLayout<CFString?>.size)
+        var propSize: UInt32 = MemoryLayout<CFString?>.u_size
         
         if AudioObjectGetPropertyDataSize(
             self.audioDeviceID,
@@ -131,7 +137,7 @@ public class AudioDevice: Identifiable {
         )
 
         var uid: CFString? = nil
-        let propSize: UInt32 = UInt32(MemoryLayout<CFString?>.size)
+        let propSize: UInt32 = MemoryLayout<CFString?>.u_size
         
         if AudioDeviceUtils.getData(
             AudioDeviceID: self.audioDeviceID,
@@ -146,14 +152,12 @@ public class AudioDevice: Identifiable {
     }
 
     private func getName() -> String? {
-        let address: AudioObjectPropertyAddress = AudioObjectPropertyAddress(
-            mSelector: kAudioDevicePropertyDeviceNameCFString,
-            mScope: kAudioObjectPropertyScopeGlobal,
-            mElement: kAudioObjectPropertyElementMain
+        let address: AudioObjectPropertyAddress = AudioDeviceUtils.createAudioObjectPropertyAddress(
+            mSelector: kAudioDevicePropertyDeviceNameCFString
         )
 
         var name: CFString? = nil
-        let propSize: UInt32 = UInt32(MemoryLayout<CFString?>.size)
+        let propSize: UInt32 = MemoryLayout<CFString?>.u_size
         
         if AudioDeviceUtils.getData(
             AudioDeviceID: self.audioDeviceID,
@@ -167,43 +171,54 @@ public class AudioDevice: Identifiable {
         return name as String?
     }
     
-    private func getManufacturer() -> String? {
-        let address: AudioObjectPropertyAddress = AudioDeviceUtils.createAudioObjectPropertyAddress(
-            mSelector: kAudioDevicePropertyDeviceManufacturerCFString
-        )
-
-        var manufacturer: CFString? = nil
-        let propSize: UInt32 = UInt32(MemoryLayout<CFString?>.size)
+    private func getSampleRate() -> Double? {
+        let address = AudioDeviceUtils.createAudioObjectPropertyAddress(mSelector: kAudioDevicePropertyActualSampleRate)
+        
+        var sampleRate: Double = -1
+        let propSize: UInt32 = MemoryLayout<Double?>.u_size
         
         if AudioDeviceUtils.getData(
             AudioDeviceID: self.audioDeviceID,
             Address: address,
             DataSize: propSize,
-            Data: &manufacturer
+            Data: &sampleRate
         ) != 0 {
             return nil
         }
-
-        return manufacturer as String?
+        
+        if sampleRate == -1 {
+            return nil
+        }
+        
+        return sampleRate
     }
     
-    private func getIcon() -> CFURL? {
-        let address: AudioObjectPropertyAddress = AudioDeviceUtils.createAudioObjectPropertyAddress(
-            mSelector: kAudioDevicePropertyIcon
+    private func getInputChannelCount() -> AVAudioChannelCount? {
+        let address = AudioDeviceUtils.createAudioObjectPropertyAddress(
+            mSelector: kAudioStreamPropertyPhysicalFormat,
+            mScope: kAudioDevicePropertyScopeInput
         )
-        
-        var iconURL: CFURL? = nil
-        let propSize: UInt32 = UInt32(MemoryLayout<CFURL?>.size)
+
+        var description: AudioStreamBasicDescription = .init()
+        let propSize: UInt32 = MemoryLayout<AudioStreamBasicDescription>.u_size
         
         if AudioDeviceUtils.getData(
             AudioDeviceID: self.audioDeviceID,
             Address: address,
             DataSize: propSize,
-            Data: &iconURL
+            Data: &description
         ) != 0 {
             return nil
         }
+        
+        return description.mChannelsPerFrame
+    }
+}
 
-        return iconURL
+extension MemoryLayout {
+    public static var u_size: UInt32 {
+        get {
+            UInt32(self.size)
+        }
     }
 }

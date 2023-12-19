@@ -83,17 +83,12 @@ public class AudioEngine {
             return
         }
         
-        let inputFormat = engine.inputNode.inputFormat(forBus: 0)
-        
-        if inputFormat.sampleRate == 0
-            || inputFormat.channelCount == 0 {
-            return
-        }
-        
         engine.attach(avAudioUnit)
         
-        engine.connect(engine.inputNode, to: avAudioUnit, format: inputFormat)
-        engine.connect(avAudioUnit, to: engine.mainMixerNode, format: inputFormat)
+        let format = createAudioFormat()
+        
+        engine.connect(engine.inputNode, to: avAudioUnit, format: format)
+        engine.connect(avAudioUnit, to: engine.mainMixerNode, format: format)
         
         isEngineIntialized = true
     }
@@ -134,10 +129,39 @@ public class AudioEngine {
         startEngine()
     }
     
+    private func createAudioFormat() -> AVAudioFormat? {
+        guard let sampleRate = inputDevice?.sampleRate,
+              let channelCount = inputDevice?.inputChannelCount else {
+            return nil
+        }
+        
+        let inputFormat = engine.inputNode.inputFormat(forBus: 0)
+        
+        var audioChannelBitmap = AudioChannelBitmap()
+        
+        for i in 0..<channelCount {
+            let value: UInt32 = UInt32(pow(2.0, Double(i)))
+            audioChannelBitmap.insert(AudioChannelBitmap(rawValue: value))
+        }
+        
+        var audioChannelLayout = AudioChannelLayout(
+            mChannelLayoutTag: kAudioChannelLayoutTag_UseChannelBitmap,
+            mChannelBitmap: audioChannelBitmap,
+            mNumberChannelDescriptions: 0,
+            mChannelDescriptions: AudioChannelDescription()
+        )
+        
+        return AVAudioFormat(
+            commonFormat: inputFormat.commonFormat,
+            sampleRate: sampleRate,
+            interleaved: inputFormat.isInterleaved,
+            channelLayout: AVAudioChannelLayout(layout: &audioChannelLayout)
+        )
+    }
+    
     public func setAggregateDevice() {
         do {
             try engine.inputNode.auAudioUnit.setDeviceID(aggregateDeviceId)
-            try engine.outputNode.auAudioUnit.setDeviceID(aggregateDeviceId)
         } catch {
             print("Fail to set input device")
         }
